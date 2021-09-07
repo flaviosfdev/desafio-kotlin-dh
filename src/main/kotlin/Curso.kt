@@ -1,15 +1,17 @@
 class Curso(
-    val nome: String,
+    var nome: String,
     val codigoCurso: Int,
-    val professorTitular: ProfessorTitular,
-    val professorAdjunto: ProfessorAdjunto,
     var quantidadeMaximaAlunos: Int,
-    val alunosMatriculados: MutableList<Aluno>
+
 ) {
+
+    lateinit var professorTitular: ProfessorTitular
+    lateinit var professorAdjunto: ProfessorAdjunto
+    val alunosMatriculados: MutableList<Aluno> = mutableListOf()
 
     init {
         if (quantidadeMaximaAlunos <= 0) {
-            quantidadeMaximaAlunos = 10
+            quantidadeMaximaAlunos = 5
         }
     }
 

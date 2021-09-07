@@ -1,3 +1,3 @@
 import java.util.*
 
-class Matricula(val aluno: Aluno, val curso: Curso, var dataDeMatricula: Date = Date() )
+class Matricula(val aluno: Aluno, val curso: Curso, val dataDeMatricula: Date = Date() )

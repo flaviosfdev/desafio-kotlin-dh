@@ -3,7 +3,7 @@ class ProfessorTitular(
     sobrenome: String,
     tempoDeCasa: Int,
     codigoProfessor: Int,
-    val especialidade: String
+    var especialidade: String
 ) : Professor(
     nome, sobrenome, tempoDeCasa, codigoProfessor
 )

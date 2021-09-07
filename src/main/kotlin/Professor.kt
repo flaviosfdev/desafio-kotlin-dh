@@ -1,6 +1,6 @@
 abstract class Professor(
-    val nome: String,
-    val sobrenome: String,
+    var nome: String,
+    var sobrenome: String,
     var tempoDeCasa: Int,
     val codigoProfessor: Int
 ) {
