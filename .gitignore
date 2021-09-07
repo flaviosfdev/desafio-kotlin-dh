@@ -2,6 +2,7 @@
 /shelf/
 /.idea/
 /.gradle/
+/build/
 
 
 # Compiled class file
