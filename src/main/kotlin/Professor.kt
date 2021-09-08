@@ -1,10 +1,12 @@
 abstract class Professor(
     var nome: String,
     var sobrenome: String,
-    var tempoDeCasa: Int,
-    val codigoProfessor: Int
+    val codigoProfessor: Int,
 ) {
 
-    override fun equals(other: Any?): Boolean = (other is Professor && this.codigoProfessor == other.codigoProfessor)
+    var tempoDeCasa: Int = 0
+
+    override fun equals(other: Any?): Boolean =
+        (other is Professor && this.codigoProfessor == other.codigoProfessor)
 
 }
