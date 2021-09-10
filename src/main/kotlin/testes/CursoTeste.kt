@@ -26,7 +26,7 @@ fun main() {
     println()
 
     println("===== Cursos Cadastrados =====")
-    adminCursos.cursos.forEach { println("Curso: ${it.nome} - Cód. ${it.codigoCurso}") }
+    println(adminCursos.imprimirCursosCadastrados())
 
     println()
     println("Deletando Curso cód. 5")
@@ -38,12 +38,12 @@ fun main() {
     println()
 
     println("===== Cursos Cadastrados =====")
-    adminCursos.cursos.forEach { println("Curso: ${it.nome} - Cód. ${it.codigoCurso}") }
+    println(adminCursos.imprimirCursosCadastrados())
 
     println("Criando curso cod 2 novamente")
     adminCursos.registrarCurso("Desenvolvimento Back-End", 2, 2)
     println()
 
     println("===== Cursos Cadastrados =====")
-    adminCursos.cursos.forEach { println("Curso: ${it.nome} - Cód. ${it.codigoCurso}") }
+    println(adminCursos.imprimirCursosCadastrados())
 }

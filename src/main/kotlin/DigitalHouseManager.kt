@@ -39,6 +39,19 @@ class DigitalHouseManager {
     }
 
 
+    fun imprimirCursosCadastrados(): String {
+
+        return if (cursos.isEmpty()) {
+            "Ainda não há cursos cadastrados."
+        } else {
+            var result = "===== Cursos Cadastrados =====\n"
+            cursos.forEach { result += "Curso: ${it.nome} (Cód. ${it.codigoCurso})\n" }
+            result
+        }
+
+    }
+
+
     fun registrarProfessorAdjunto(nome: String, sobrenome: String, codigoProfessor: Int, quantidadeDeHoras: Int) {
 
         when (val professorExistente: Professor? = professores.find { it.codigoProfessor == codigoProfessor }) {

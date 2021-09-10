@@ -38,4 +38,14 @@ class Curso(
             println("${umAluno.nome} ${umAluno.sobrenome} não está matriculado no curso ${this.nome}")
         }
     }
+
+
+    override fun toString(): String = """
+            ===== Informações Curso =====
+            Curso: $nome
+            Código: $codigoCurso
+            Aluno matriculados: ${alunosMatriculados.size}
+            Capacidade: $quantidadeMaximaAlunos alunos
+        """.trimIndent()
+
 }
