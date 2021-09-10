@@ -1,3 +1,5 @@
+import org.omg.IOP.CodecPackage.TypeMismatch
+
 class DigitalHouseManager {
 
     private val alunos: MutableList<Aluno> = mutableListOf()
@@ -200,8 +202,10 @@ class DigitalHouseManager {
 
         try {
             val curso: Curso? = cursos.find { it.codigoCurso == codigoCurso }
-            val professorTitular: ProfessorTitular? = professores.find { it.codigoProfessor == codigoProfessorTitular } as ProfessorTitular?
-            val professorAdjunto: ProfessorAdjunto? = professores.find { it.codigoProfessor == codigoProfessorAdjunto } as ProfessorAdjunto?
+            val professorTitular: ProfessorTitular? =
+                professores.find { it.codigoProfessor == codigoProfessorTitular } as ProfessorTitular?
+            val professorAdjunto: ProfessorAdjunto? =
+                professores.find { it.codigoProfessor == codigoProfessorAdjunto } as ProfessorAdjunto?
 
             when {
                 curso == null -> println("Curso (cód. $codigoCurso) inválido!")
@@ -217,5 +221,23 @@ class DigitalHouseManager {
         }
     }
 
+
+    fun consultarCursoAluno(codigoAluno: Int) {
+
+
+        val aluno: Aluno? = alunos.find { it.codigoAluno == codigoAluno }
+
+        when {
+            aluno == null -> {
+                println("Aluno (cód. $codigoAluno) Inválido.")
+            }
+            else -> {
+                val matricula: Matricula = matriculas.find { it.aluno.codigoAluno == codigoAluno } as Matricula
+                println("${aluno.nome} ${aluno.sobrenome} | Matrícula: ${matricula.toString()} | Curso: ${matricula.curso.nome}")
+            }
+        }
+    }
 }
+
+
 
