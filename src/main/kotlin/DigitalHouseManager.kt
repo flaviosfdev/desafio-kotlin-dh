@@ -102,6 +102,25 @@ class DigitalHouseManager {
     }
 
 
+    fun imprimirListaDeProfessores(): String {
+
+        return if (professores.isEmpty()) {
+            "Ainda não há professores cadastrados."
+        } else {
+            var result = "===== Professores Cadastrados =====\n"
+            professores.forEach {
+                result += if (it is ProfessorAdjunto) {
+                    "${it.nome} ${it.sobrenome} - Adjunto (Cód. ${it.codigoProfessor})\n"
+                } else {
+                    "${it.nome} ${it.sobrenome} -Titular (Cód. ${it.codigoProfessor})\n"
+                }
+            }
+            result
+        }
+
+    }
+
+
     fun matricularAluno(nome: String, sobrenome: String, codigoAluno: Int) {
         TODO("matricular aluno")
     }
