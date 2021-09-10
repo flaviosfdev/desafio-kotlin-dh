@@ -6,13 +6,13 @@ class DigitalHouseManager {
     val matriculas: MutableList<Matricula> = mutableListOf()
 
 
-    fun registrarCurso(nome: String, codigoCurso: Int, quantidadeMaximaDeAlunos: Int) : Unit {
+    fun registrarCurso(nome: String, codigoCurso: Int, quantidadeMaximaDeAlunos: Int) {
 
         when (val cursoExistente: Curso? = cursos.find { it.codigoCurso == codigoCurso }) {
             null -> {
                 val novoCurso = Curso(nome, codigoCurso, quantidadeMaximaDeAlunos)
                 cursos.add(novoCurso)
-                println("Curso ${novoCurso.nome} (cód. ${novoCurso.codigoCurso}) cadastrado com sucesso!")
+                println("Curso ${novoCurso.nome} cadastrado com sucesso! (cód. ${novoCurso.codigoCurso})")
             }
             else -> {
                 println("Não foi possível cadastrar o curso: $nome - cód: $codigoCurso.")
@@ -23,7 +23,7 @@ class DigitalHouseManager {
     }
 
 
-    fun excluirCurso(codigoCurso: Int) : Unit{
+    fun excluirCurso(codigoCurso: Int) {
 
         when (val curso: Curso? = cursos.find { it.codigoCurso == codigoCurso }) {
             null -> {
@@ -39,17 +39,17 @@ class DigitalHouseManager {
     }
 
 
-    fun registrarProfessorAdjunto(nome: String, sobrenome: String, codigoProfessor: Int, quantidadeDeHoras: Int) : Unit {
+    fun registrarProfessorAdjunto(nome: String, sobrenome: String, codigoProfessor: Int, quantidadeDeHoras: Int) {
 
         when (val professorExistente: Professor? = professores.find { it.codigoProfessor == codigoProfessor }) {
             null -> {
                 val novoProfessorAdjunto = ProfessorAdjunto(nome, sobrenome, codigoProfessor, quantidadeDeHoras)
                 professores.add(novoProfessorAdjunto)
-                println("Professor Adjunto ${novoProfessorAdjunto.nome} ${novoProfessorAdjunto.sobrenome} cadastrado com sucesso!")
+                println("Professor(a) Adjunto(a) ${novoProfessorAdjunto.nome} ${novoProfessorAdjunto.sobrenome} cadastrado(a) com sucesso! (cód. ${novoProfessorAdjunto.codigoProfessor})")
             }
             else -> {
-                println("Não foi possível cadastrar o Professor Adjunto $nome $sobrenome.")
-                println("Cód. $codigoProfessor já pertence ao Professor ${professorExistente.nome} ${professorExistente.sobrenome}")
+                println("Não foi possível cadastrar $nome $sobrenome como um(a) novo(a) Professor(a) Adjunto(a).")
+                println("Cód. $codigoProfessor já pertence ao(à) Professor(a) ${professorExistente.nome} ${professorExistente.sobrenome}")
             }
         }
 
@@ -62,27 +62,27 @@ class DigitalHouseManager {
             null -> {
                 val novoProfessorTitular = ProfessorTitular(nome, sobrenome, codigoProfessor, especialidade)
                 professores.add(novoProfessorTitular)
-                println("Professor Titular ${novoProfessorTitular.nome} ${novoProfessorTitular.sobrenome} cadastrado com sucesso!")
+                println("Professor(a) Titular ${novoProfessorTitular.nome} ${novoProfessorTitular.sobrenome} cadastrado(a) com sucesso! (cód. ${novoProfessorTitular.codigoProfessor})")
             }
             else -> {
-                println("Não foi possível cadastrar o Professor Titular $nome $sobrenome.")
-                println("Cód. $codigoProfessor já pertence ao Professor ${professorExistente.nome} ${professorExistente.sobrenome}")
+                println("Não foi possível cadastrar $nome $sobrenome como um(a) novo(a) Professor(a) Titular .")
+                println("Cód. $codigoProfessor já pertence ao(à) Professor(a) ${professorExistente.nome} ${professorExistente.sobrenome}")
             }
         }
 
     }
 
 
-    fun excluirProfessor(codigoProfessor: Int) : Unit {
+    fun excluirProfessor(codigoProfessor: Int) {
 
         when (val professor: Professor? = professores.find { it.codigoProfessor == codigoProfessor }) {
             null -> {
-                println("Não foi possível excluir professor. Erro: Código Professor $codigoProfessor inexistente.")
+                println("Erro: Código (cód. $codigoProfessor) inválido.")
             }
             else -> {
                 val professorExcluido = professor
                 professores.remove(professor)
-                println("Professor ${professorExcluido.nome} removido com sucesso.")
+                println("Professor(a) ${professorExcluido.nome} removido(a) com sucesso.")
             }
         }
 
