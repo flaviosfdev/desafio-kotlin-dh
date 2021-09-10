@@ -121,6 +121,9 @@ class DigitalHouseManager {
     }
 
 
+    /**
+     * Matricular aluno na escola
+     */
     fun matricularAluno(nome: String, sobrenome: String, codigoAluno: Int) {
 
         when (val alunoExistente: Aluno? = alunos.find { it.codigoAluno == codigoAluno }) {
@@ -138,8 +141,29 @@ class DigitalHouseManager {
     }
 
 
+    /**
+     * Matricular aluno em um curso
+     */
     fun matricularAluno(codigoAluno: Int, codigoCurso: Int) {
-        TODO("matricular aluno em um curso")
+
+        val aluno : Aluno? = alunos.find { it.codigoAluno == codigoAluno }
+        val curso : Curso? = cursos.find { it.codigoCurso == codigoCurso }
+
+        when {
+            aluno == null && curso == null -> println("Aluno (cód. $codigoAluno) e Curso (cód. $codigoCurso) inválidos!")
+            aluno == null -> println("Aluno (cód. $codigoAluno) inválido!")
+            curso == null -> println("Curso (cód. $codigoCurso) inválido!")
+            else -> {
+                if (curso.adicionarUmAluno(aluno)) {
+                    val matricula = Matricula(aluno, curso)
+                    matriculas.add(matricula)
+                    println("Aluno ${aluno.nome} ${aluno.sobrenome} (cód. ${aluno.codigoAluno}) matriculado(a) com sucesso no curso ${curso.nome} (cód. ${curso.codigoCurso}) - Matrícula: ${matricula.toString()}")
+                } else {
+                    println("Não há vagas no curso ${curso.nome} (cód. ${curso.codigoCurso}) para matricular o(a) aluno(a) ${aluno.nome} ${aluno.sobrenome} (cód. ${aluno.codigoAluno}).")
+                }
+            }
+        }
+
     }
 
 
