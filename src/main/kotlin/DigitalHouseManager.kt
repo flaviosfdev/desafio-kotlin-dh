@@ -122,7 +122,19 @@ class DigitalHouseManager {
 
 
     fun matricularAluno(nome: String, sobrenome: String, codigoAluno: Int) {
-        TODO("matricular aluno")
+
+        when (val alunoExistente: Aluno? = alunos.find { it.codigoAluno == codigoAluno }) {
+            null -> {
+                val novoAluno = Aluno(nome, sobrenome, codigoAluno)
+                alunos.add(novoAluno)
+                println("Aluno(a) ${novoAluno.nome} ${novoAluno.sobrenome} matriculado(a) com sucesso! (cód. ${novoAluno.codigoAluno})")
+            }
+            else -> {
+                println("Não foi possível matricular $nome $sobrenome como um(a) novo(a) aluno(a).")
+                println("Cód. $codigoAluno já pertence ao(à) aluno(a) ${alunoExistente.nome} ${alunoExistente.sobrenome}.")
+            }
+        }
+
     }
 
 
