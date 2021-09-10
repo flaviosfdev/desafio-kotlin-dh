@@ -1,18 +1,19 @@
 class Curso(
     var nome: String,
     val codigoCurso: Int,
-    var quantidadeMaximaAlunos: Int,
-
-    ) {
+    private var quantidadeMaximaDeAlunos: Int,
+) {
 
     lateinit var professorTitular: ProfessorTitular
+    private set
     lateinit var professorAdjunto: ProfessorAdjunto
-    val alunosMatriculados: MutableList<Aluno> = mutableListOf()
+    private set
+    private val alunosMatriculados: MutableList<Aluno> = mutableListOf()
 
 
     init {
-        if (quantidadeMaximaAlunos <= 0) {
-            quantidadeMaximaAlunos = 5
+        if (quantidadeMaximaDeAlunos <= 0) {
+            quantidadeMaximaDeAlunos = 5
         }
     }
 
@@ -21,7 +22,7 @@ class Curso(
 
 
     fun adicionarUmAluno(umAluno: Aluno): Boolean {
-        if (alunosMatriculados.size < quantidadeMaximaAlunos) {
+        if (alunosMatriculados.size < quantidadeMaximaDeAlunos) {
             alunosMatriculados.add(umAluno)
             return true
         } else {
@@ -30,7 +31,7 @@ class Curso(
     }
 
 
-    fun excluirAluno(umAluno: Aluno): Unit {
+    fun excluirAluno(umAluno: Aluno) {
         if (alunosMatriculados.contains(umAluno)) {
             alunosMatriculados.remove(umAluno)
         } else {
@@ -40,12 +41,32 @@ class Curso(
     }
 
 
+    fun alocarProfessorTitular(novoProfessorTitular: ProfessorTitular) {
+        professorTitular = novoProfessorTitular
+        println("Professor(a) Titular ${novoProfessorTitular.nome} ${novoProfessorTitular.sobrenome} (cód. ${novoProfessorTitular.codigoProfessor}) especialista em ${novoProfessorTitular.especialidade} alocado(a) com sucesso no curso $nome (cód. $codigoCurso).")
+    }
+
+
+    fun alocarProfessorAdjunto(novoProfessorAdjunto: ProfessorAdjunto) {
+        professorAdjunto = novoProfessorAdjunto
+        println("Professor(a) Ajunto(a) ${novoProfessorAdjunto.nome} ${novoProfessorAdjunto.sobrenome} (cód. ${novoProfessorAdjunto.codigoProfessor}) com disponibilidade de ${novoProfessorAdjunto.quantidadeHorasMonitoria} horas semanais de motinoria alocado(a) com sucesso no curso $nome (cód. $codigoCurso).")
+    }
+
+
+    fun quantidadeDeAlunosMatriculados() : Int = alunosMatriculados.size
+
+
+    fun alterarQuantidadeMaximaDeAlunos(novaQuantidade: Int) {
+        quantidadeMaximaDeAlunos = novaQuantidade
+    }
+
+
     override fun toString(): String = """
             ===== Informações Curso =====
             Curso: $nome
             Código: $codigoCurso
             Aluno matriculados: ${alunosMatriculados.size}
-            Capacidade: $quantidadeMaximaAlunos alunos
+            Capacidade: $quantidadeMaximaDeAlunos alunos
         """.trimIndent()
 
 }

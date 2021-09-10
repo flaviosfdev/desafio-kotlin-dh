@@ -39,6 +39,29 @@ class DigitalHouseManager {
     }
 
 
+    fun alterarQuantidadeMaximaDeAlunosEmCurso(codigoCurso: Int, novaQuantidade : Int) {
+
+        when (val curso: Curso? = cursos.find { it.codigoCurso == codigoCurso }) {
+            null -> {
+                println("Curso (cód. $codigoCurso) inválido.")
+            }
+            else -> {
+                if (novaQuantidade < 0) {
+                    println("Quantidade menor que 0 inválida.")
+                } else if (novaQuantidade < curso.quantidadeDeAlunosMatriculados()) {
+                    println("Não foi possível alterar quantidade. Quantidade menor que número de alunos matriculados.")
+                    println("Quantidade informada: $novaQuantidade.")
+                    println("Quantidade de alunos matriculados: ${curso.quantidadeDeAlunosMatriculados()}.")
+                } else {
+                    curso.alterarQuantidadeMaximaDeAlunos(novaQuantidade)
+                    println("Quantidade máxima de alunos do curso ${curso.nome} alterada com sucesso. Nova quantidade: $novaQuantidade")
+                }
+            }
+        }
+
+    }
+
+
     fun imprimirCursosCadastrados(): String {
 
         return if (cursos.isEmpty()) {
@@ -168,7 +191,21 @@ class DigitalHouseManager {
 
 
     fun alocarProfessores(codigoCurso: Int, codigoProfessorTitular: Int, codigoProfessorAdjunto: Int) {
-        TODO("alocar professores em um curso")
+
+        val curso : Curso? = cursos.find { it.codigoCurso == codigoCurso }
+        val professorTitular : ProfessorTitular? = professores.find { it.codigoProfessor == codigoProfessorTitular } as ProfessorTitular?
+        val professorAdjunto : ProfessorAdjunto? = professores.find { it.codigoProfessor == codigoProfessorAdjunto } as ProfessorAdjunto?
+
+        when {
+            curso == null -> println("Curso (cód. $codigoCurso) inválido!")
+            professorTitular == null -> println("Professor(a) Titular (cód. $codigoCurso) inválido(a)!")
+            professorAdjunto == null -> println("Professor(a) Adjunto(a) (cód. $codigoCurso) inválido(a)!")
+            else -> {
+                curso.alocarProfessorTitular(professorTitular)
+                curso.alocarProfessorAdjunto(professorAdjunto)
+            }
+        }
+
     }
 
 }

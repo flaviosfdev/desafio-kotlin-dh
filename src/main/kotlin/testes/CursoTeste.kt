@@ -44,6 +44,14 @@ fun main() {
     adminCursos.registrarCurso("Desenvolvimento Back-End", 2, 2)
     println()
 
-    println("===== Cursos Cadastrados =====")
-    println(adminCursos.imprimirCursosCadastrados())
+    println(adminCursos.imprimirCursosCadastrados()) // lista de cursos cadastrados
+
+    adminCursos.matricularAluno("Flávio", "Ferreira", 1) // criando aluno
+    adminCursos.matricularAluno(1,  1) // add aluno ao curso
+
+    println()
+    adminCursos.alterarQuantidadeMaximaDeAlunosEmCurso(5, 0) // curso inválido
+    adminCursos.alterarQuantidadeMaximaDeAlunosEmCurso(1, -5) // quantidade inválida menor que zero
+    adminCursos.alterarQuantidadeMaximaDeAlunosEmCurso(1, 0) // quantidade inválida menor que alunos matriculados
+    adminCursos.alterarQuantidadeMaximaDeAlunosEmCurso(1, 1) // curso e quantidade válidos
 }
