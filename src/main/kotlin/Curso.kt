@@ -49,7 +49,7 @@ class Curso(
 
     fun alocarProfessorAdjunto(novoProfessorAdjunto: ProfessorAdjunto) {
         professorAdjunto = novoProfessorAdjunto
-        println("Professor(a) Ajunto(a) ${novoProfessorAdjunto.nome} ${novoProfessorAdjunto.sobrenome} (cód. ${novoProfessorAdjunto.codigoProfessor}) com disponibilidade de ${novoProfessorAdjunto.quantidadeHorasMonitoria} horas semanais de motinoria alocado(a) com sucesso no curso $nome (cód. $codigoCurso).")
+        println("Professor(a) Ajunto(a) ${novoProfessorAdjunto.nome} ${novoProfessorAdjunto.sobrenome} (cód. ${novoProfessorAdjunto.codigoProfessor}) com sucesso no curso $nome (cód. $codigoCurso). CH Monitoria: ${novoProfessorAdjunto.quantidadeHorasMonitoria}H/semana.")
     }
 
 

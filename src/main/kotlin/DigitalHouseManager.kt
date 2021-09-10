@@ -1,22 +1,25 @@
 class DigitalHouseManager {
 
-    val alunos: MutableList<Aluno> = mutableListOf()
-    val professores: MutableList<Professor> = mutableListOf()
-    val cursos: MutableList<Curso> = mutableListOf()
-    val matriculas: MutableList<Matricula> = mutableListOf()
+    private val alunos: MutableList<Aluno> = mutableListOf()
+    private val professores: MutableList<Professor> = mutableListOf()
+    private val cursos: MutableList<Curso> = mutableListOf()
+    private val matriculas: MutableList<Matricula> = mutableListOf()
 
 
     fun registrarCurso(nome: String, codigoCurso: Int, quantidadeMaximaDeAlunos: Int) {
 
         when (val cursoExistente: Curso? = cursos.find { it.codigoCurso == codigoCurso }) {
             null -> {
-                val novoCurso = Curso(nome, codigoCurso, quantidadeMaximaDeAlunos)
-                cursos.add(novoCurso)
-                println("Curso ${novoCurso.nome} cadastrado com sucesso! (cód. ${novoCurso.codigoCurso})")
+                if (codigoCurso <= 0) {
+                    println("Não foi possível cadastrar Curso $nome. Código inválido (cód. $codigoCurso).")
+                } else {
+                    val novoCurso = Curso(nome, codigoCurso, quantidadeMaximaDeAlunos)
+                    cursos.add(novoCurso)
+                    println("Curso ${novoCurso.nome} cadastrado com sucesso! (cód. ${novoCurso.codigoCurso})")
+                }
             }
             else -> {
-                println("Não foi possível cadastrar o curso: $nome - cód: $codigoCurso.")
-                println("Cód. ${cursoExistente.codigoCurso} já pertence ao curso: ${cursoExistente.nome}.")
+                println("Não foi possível cadastrar o curso: $nome - cód: $codigoCurso. Cód. ${cursoExistente.codigoCurso} já pertence ao curso: ${cursoExistente.nome}.")
             }
         }
 
@@ -39,7 +42,7 @@ class DigitalHouseManager {
     }
 
 
-    fun alterarQuantidadeMaximaDeAlunosEmCurso(codigoCurso: Int, novaQuantidade : Int) {
+    fun alterarQuantidadeMaximaDeAlunosEmCurso(codigoCurso: Int, novaQuantidade: Int) {
 
         when (val curso: Curso? = cursos.find { it.codigoCurso == codigoCurso }) {
             null -> {
@@ -49,9 +52,7 @@ class DigitalHouseManager {
                 if (novaQuantidade < 0) {
                     println("Quantidade menor que 0 inválida.")
                 } else if (novaQuantidade < curso.quantidadeDeAlunosMatriculados()) {
-                    println("Não foi possível alterar quantidade. Quantidade menor que número de alunos matriculados.")
-                    println("Quantidade informada: $novaQuantidade.")
-                    println("Quantidade de alunos matriculados: ${curso.quantidadeDeAlunosMatriculados()}.")
+                    println("Não foi possível alterar quantidade. Quantidade menor que número de alunos matriculados. Quantidade informada: $novaQuantidade.Quantidade de alunos matriculados: ${curso.quantidadeDeAlunosMatriculados()}.")
                 } else {
                     curso.alterarQuantidadeMaximaDeAlunos(novaQuantidade)
                     println("Quantidade máxima de alunos do curso ${curso.nome} alterada com sucesso. Nova quantidade: $novaQuantidade")
@@ -79,13 +80,16 @@ class DigitalHouseManager {
 
         when (val professorExistente: Professor? = professores.find { it.codigoProfessor == codigoProfessor }) {
             null -> {
-                val novoProfessorAdjunto = ProfessorAdjunto(nome, sobrenome, codigoProfessor, quantidadeDeHoras)
-                professores.add(novoProfessorAdjunto)
-                println("Professor(a) Adjunto(a) ${novoProfessorAdjunto.nome} ${novoProfessorAdjunto.sobrenome} cadastrado(a) com sucesso! (cód. ${novoProfessorAdjunto.codigoProfessor})")
+                if (codigoProfessor <= 0) {
+                    println("Não foi possível cadastrar Professor(a) Adjunto(a) $nome $sobrenome. Código inválido (cód. $codigoProfessor)")
+                } else {
+                    val novoProfessorAdjunto = ProfessorAdjunto(nome, sobrenome, codigoProfessor, quantidadeDeHoras)
+                    professores.add(novoProfessorAdjunto)
+                    println("Professor(a) Adjunto(a) ${novoProfessorAdjunto.nome} ${novoProfessorAdjunto.sobrenome} cadastrado(a) com sucesso! (cód. ${novoProfessorAdjunto.codigoProfessor})")
+                }
             }
             else -> {
-                println("Não foi possível cadastrar $nome $sobrenome como um(a) novo(a) Professor(a) Adjunto(a).")
-                println("Cód. $codigoProfessor já pertence ao(à) Professor(a) ${professorExistente.nome} ${professorExistente.sobrenome}")
+                println("Não foi possível cadastrar $nome $sobrenome como um(a) novo(a) Professor(a) Adjunto(a). Cód. $codigoProfessor já pertence ao(à) Professor(a) ${professorExistente.nome} ${professorExistente.sobrenome}")
             }
         }
 
@@ -94,15 +98,18 @@ class DigitalHouseManager {
 
     fun registrarProfessorTitular(nome: String, sobrenome: String, codigoProfessor: Int, especialidade: String) {
 
-        when (val professorExistente : Professor? = professores.find { it.codigoProfessor == codigoProfessor }) {
+        when (val professorExistente: Professor? = professores.find { it.codigoProfessor == codigoProfessor }) {
             null -> {
-                val novoProfessorTitular = ProfessorTitular(nome, sobrenome, codigoProfessor, especialidade)
-                professores.add(novoProfessorTitular)
-                println("Professor(a) Titular ${novoProfessorTitular.nome} ${novoProfessorTitular.sobrenome} cadastrado(a) com sucesso! (cód. ${novoProfessorTitular.codigoProfessor})")
+                if (codigoProfessor <= 0) {
+                    println("Não foi possível cadastrar Professor(a) Titular $nome $sobrenome. Código inválido (cód. $codigoProfessor)")
+                } else {
+                    val novoProfessorTitular = ProfessorTitular(nome, sobrenome, codigoProfessor, especialidade)
+                    professores.add(novoProfessorTitular)
+                    println("Professor(a) Titular ${novoProfessorTitular.nome} ${novoProfessorTitular.sobrenome} cadastrado(a) com sucesso! (cód. ${novoProfessorTitular.codigoProfessor})")
+                }
             }
             else -> {
-                println("Não foi possível cadastrar $nome $sobrenome como um(a) novo(a) Professor(a) Titular .")
-                println("Cód. $codigoProfessor já pertence ao(à) Professor(a) ${professorExistente.nome} ${professorExistente.sobrenome}")
+                println("Não foi possível cadastrar $nome $sobrenome como um(a) novo(a) Professor(a) Titular. Cód. $codigoProfessor já pertence ao(à) Professor(a) ${professorExistente.nome} ${professorExistente.sobrenome}")
             }
         }
 
@@ -156,8 +163,7 @@ class DigitalHouseManager {
                 println("Aluno(a) ${novoAluno.nome} ${novoAluno.sobrenome} matriculado(a) com sucesso! (cód. ${novoAluno.codigoAluno})")
             }
             else -> {
-                println("Não foi possível matricular $nome $sobrenome como um(a) novo(a) aluno(a).")
-                println("Cód. $codigoAluno já pertence ao(à) aluno(a) ${alunoExistente.nome} ${alunoExistente.sobrenome}.")
+                println("Não foi possível matricular $nome $sobrenome como um(a) novo(a) aluno(a). Cód. $codigoAluno já pertence ao(à) aluno(a) ${alunoExistente.nome} ${alunoExistente.sobrenome}.")
             }
         }
 
@@ -169,13 +175,13 @@ class DigitalHouseManager {
      */
     fun matricularAluno(codigoAluno: Int, codigoCurso: Int) {
 
-        val aluno : Aluno? = alunos.find { it.codigoAluno == codigoAluno }
-        val curso : Curso? = cursos.find { it.codigoCurso == codigoCurso }
+        val aluno: Aluno? = alunos.find { it.codigoAluno == codigoAluno }
+        val curso: Curso? = cursos.find { it.codigoCurso == codigoCurso }
 
         when {
             aluno == null && curso == null -> println("Aluno (cód. $codigoAluno) e Curso (cód. $codigoCurso) inválidos!")
-            aluno == null -> println("Aluno (cód. $codigoAluno) inválido!")
-            curso == null -> println("Curso (cód. $codigoCurso) inválido!")
+            aluno == null -> println("Não foi possível realizar matricula. Aluno (cód. $codigoAluno) inválido!")
+            curso == null -> println("Não foi possível realizar matricula. Curso (cód. $codigoCurso) inválido!")
             else -> {
                 if (curso.adicionarUmAluno(aluno)) {
                     val matricula = Matricula(aluno, curso)
@@ -192,20 +198,24 @@ class DigitalHouseManager {
 
     fun alocarProfessores(codigoCurso: Int, codigoProfessorTitular: Int, codigoProfessorAdjunto: Int) {
 
-        val curso : Curso? = cursos.find { it.codigoCurso == codigoCurso }
-        val professorTitular : ProfessorTitular? = professores.find { it.codigoProfessor == codigoProfessorTitular } as ProfessorTitular?
-        val professorAdjunto : ProfessorAdjunto? = professores.find { it.codigoProfessor == codigoProfessorAdjunto } as ProfessorAdjunto?
+        try {
+            val curso: Curso? = cursos.find { it.codigoCurso == codigoCurso }
+            val professorTitular: ProfessorTitular? = professores.find { it.codigoProfessor == codigoProfessorTitular } as ProfessorTitular?
+            val professorAdjunto: ProfessorAdjunto? = professores.find { it.codigoProfessor == codigoProfessorAdjunto } as ProfessorAdjunto?
 
-        when {
-            curso == null -> println("Curso (cód. $codigoCurso) inválido!")
-            professorTitular == null -> println("Professor(a) Titular (cód. $codigoCurso) inválido(a)!")
-            professorAdjunto == null -> println("Professor(a) Adjunto(a) (cód. $codigoCurso) inválido(a)!")
-            else -> {
-                curso.alocarProfessorTitular(professorTitular)
-                curso.alocarProfessorAdjunto(professorAdjunto)
+            when {
+                curso == null -> println("Curso (cód. $codigoCurso) inválido!")
+                professorTitular == null -> println("Professor(a) Titular (cód. $codigoCurso) inválido(a)!")
+                professorAdjunto == null -> println("Professor(a) Adjunto(a) (cód. $codigoCurso) inválido(a)!")
+                else -> {
+                    curso.alocarProfessorTitular(professorTitular)
+                    curso.alocarProfessorAdjunto(professorAdjunto)
+                }
             }
+        } catch (e: ClassCastException) {
+            println("Não foi possível realizar alocação. Verifique categorias dos(as) professores(as).")
         }
-
     }
 
 }
+
