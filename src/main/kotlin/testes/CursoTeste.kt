@@ -47,7 +47,7 @@ fun main() {
     println(adminCursos.imprimirCursosCadastrados()) // lista de cursos cadastrados
 
     adminCursos.matricularAluno("Flávio", "Ferreira", 1) // criando aluno
-    adminCursos.matricularAluno(1,  1) // add aluno ao curso
+    adminCursos.matricularAluno(1, 1) // add aluno ao curso
 
     println()
     adminCursos.alterarQuantidadeMaximaDeAlunosEmCurso(5, 0) // curso inválido

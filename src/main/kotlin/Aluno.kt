@@ -6,4 +6,10 @@ class Aluno(
 
     override fun equals(other: Any?): Boolean = (other is Aluno && this.codigoAluno == other.codigoAluno)
 
+
+    override fun toString(): String = """
+        ===== Informações Aluno =====
+        Nome: $nome $sobrenome
+        Código: $codigoAluno
+    """.trimIndent()
 }

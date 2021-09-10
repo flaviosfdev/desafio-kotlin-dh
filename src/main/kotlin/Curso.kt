@@ -5,9 +5,9 @@ class Curso(
 ) {
 
     lateinit var professorTitular: ProfessorTitular
-    private set
+        private set
     lateinit var professorAdjunto: ProfessorAdjunto
-    private set
+        private set
     private val alunosMatriculados: MutableList<Aluno> = mutableListOf()
 
 
@@ -53,7 +53,7 @@ class Curso(
     }
 
 
-    fun quantidadeDeAlunosMatriculados() : Int = alunosMatriculados.size
+    fun quantidadeDeAlunosMatriculados(): Int = alunosMatriculados.size
 
 
     fun alterarQuantidadeMaximaDeAlunos(novaQuantidade: Int) {

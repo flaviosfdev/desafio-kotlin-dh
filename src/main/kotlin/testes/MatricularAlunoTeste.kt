@@ -25,9 +25,9 @@ fun main() {
     admin.matricularAluno("Paulo", "Victor", 1)
     println()
 
-    admin.matricularAluno(3,4) // aluno e curso inválidos
-    admin.matricularAluno(3,1) // aluno inválido
-    admin.matricularAluno(1,4) // curso inválido
-    admin.matricularAluno(1,1) // aluno e curso válidos
+    admin.matricularAluno(3, 4) // aluno e curso inválidos
+    admin.matricularAluno(3, 1) // aluno inválido
+    admin.matricularAluno(1, 4) // curso inválido
+    admin.matricularAluno(1, 1) // aluno e curso válidos
 
 }

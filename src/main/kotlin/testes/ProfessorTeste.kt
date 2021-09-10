@@ -30,10 +30,10 @@ fun main() {
     println(adminProfessores.imprimirListaDeProfessores()) // lista de professores
 
     println()
-    adminProfessores.excluirProfessor( 4) // professor inválido
+    adminProfessores.excluirProfessor(4) // professor inválido
 
     println()
-    adminProfessores.excluirProfessor( 3) // professor
+    adminProfessores.excluirProfessor(3) // professor
 
     println()
     println("===== Professores Cadastrados =====")
