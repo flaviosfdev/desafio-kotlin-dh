@@ -4,7 +4,8 @@ class Aluno(
     val codigoAluno: Int
 ) {
 
-    override fun equals(other: Any?): Boolean = (other is Aluno && this.codigoAluno == other.codigoAluno)
+    override fun equals(other: Any?): Boolean =
+        (other is Aluno && this.codigoAluno == other.codigoAluno)
 
 
     override fun toString(): String = """
@@ -12,4 +13,5 @@ class Aluno(
         Nome: $nome $sobrenome
         Código: $codigoAluno
     """.trimIndent()
+
 }
